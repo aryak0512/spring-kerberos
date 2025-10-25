@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: aryak
+      POSTGRES_PASSWORD: root@123
+      POSTGRES_DB: testdb
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_net
+
+volumes:
+  postgres_data:
+
+networks:
+  postgres_net:
+    driver: bridge
