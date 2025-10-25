@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16
@@ -12,6 +10,9 @@ services:
       - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./kerberos/pg.keytab:/var/lib/postgresql/pg.keytab:ro
+      - ./postgres-config/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./postgres-config/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       - postgres_net
 
